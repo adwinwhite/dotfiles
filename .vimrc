@@ -1,3 +1,4 @@
+imap jj <Esc>
 set wildmode=longest,list,full
 syntax on
 colorscheme delek
@@ -5,15 +6,19 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set number
 set showcmd
 
+" Fold
+set foldmethod=syntax
+hi Folded ctermbg=242
 
-imap jj <Esc>
 
+" Plugins loaded
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'zxqfl/tabnine-vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'preservim/nerdcommenter'
 call plug#end()
 
-
+" Easymotion 
 let mapleader=";" 
 map <Leader> <Plug>(easymotion-prefix)
 map  <Leader>w <Plug>(easymotion-bd-w)
@@ -26,3 +31,6 @@ map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
 let g:EasyMotion_startofline = 0
 let g:EasyMotion_smartcase = 1
+
+
+filetype plugin on
