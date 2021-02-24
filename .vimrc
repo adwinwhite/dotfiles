@@ -1,5 +1,3 @@
-inoremap jj <Esc>
-noremap <F6> :source ~/.vimrc<CR>
 set wildmode=longest,list,full
 syntax on
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -16,8 +14,14 @@ set sidescrolloff=8
 
 filetype plugin indent on
 
+
+" Custom mappings
+inoremap jj <Esc>
+noremap <silent> <F6> :source ~/.vimrc<CR>
+
 " Plugins loaded
 call plug#begin(stdpath('data') . '/plugged')
+Plug 'romainl/vim-cool'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-repeat'
 Plug 'adwinwhite/vim-fanfingtastic'
@@ -95,3 +99,8 @@ let g:neovide_font_size=54.0
 
 
 " Custom functions
+
+
+
+
+
