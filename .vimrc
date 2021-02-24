@@ -1,4 +1,5 @@
 inoremap jj <Esc>
+noremap <F6> :source ~/.vimrc<CR>
 set wildmode=longest,list,full
 syntax on
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -17,6 +18,7 @@ filetype plugin indent on
 
 " Plugins loaded
 call plug#begin(stdpath('data') . '/plugged')
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-repeat'
 Plug 'adwinwhite/vim-fanfingtastic'
 Plug 'vim-airline/vim-airline'
@@ -26,6 +28,15 @@ Plug 'preservim/nerdcommenter'
 Plug 'joshdick/onedark.vim'
 Plug 'sheerun/vim-polyglot'
 call plug#end()
+
+
+" Better whitespace
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+
+
+" Fanfingtastic
+let g:fanfingtastic_ignorecase = 1
 
 
 " Airline
@@ -50,8 +61,8 @@ set foldnestmax=1
 
 
 
-" Easymotion 
-let mapleader=";" 
+" Easymotion
+let mapleader=";"
 map <Leader> <Plug>(easymotion-prefix)
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
@@ -81,3 +92,6 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Neovide
 let g:neovide_font_size=54.0
+
+
+" Custom functions
