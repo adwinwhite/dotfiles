@@ -14,29 +14,54 @@ set sidescrolloff=8
 
 filetype plugin indent on
 
-
 " Custom mappings
 inoremap jj <Esc>
 noremap <silent> <F6> :source ~/.vimrc<CR>
 
 " Plugins loaded
 call plug#begin(stdpath('data') . '/plugged')
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 Plug 'romainl/vim-cool'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-repeat'
 Plug 'adwinwhite/vim-fanfingtastic'
 Plug 'vim-airline/vim-airline'
-Plug 'zxqfl/tabnine-vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'preservim/nerdcommenter'
 Plug 'joshdick/onedark.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'dense-analysis/ale'
 call plug#end()
+
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#var('tabnine', {
+\ 'line_limit': 500,
+\ 'max_num_results': 10,
+\ })
+
+
+
+" Ale
+let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'c': ['clang_format'],
+\   'javascript': ['eslint'],
+\}
+let g:ale_fix_on_save = 1
 
 
 " Better whitespace
 let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
+" Ale does that now
+" let g:strip_whitespace_on_save=1
 
 
 " Fanfingtastic
@@ -99,8 +124,3 @@ let g:neovide_font_size=54.0
 
 
 " Custom functions
-
-
-
-
-
