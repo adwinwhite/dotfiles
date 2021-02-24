@@ -1,14 +1,24 @@
-imap jj <Esc>
+inoremap jj <Esc>
 set wildmode=longest,list,full
 syntax on
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set backspace=indent,eol,start
 set number
 set showcmd
+set ignorecase
+set autoindent
+set incsearch
+set nowrap
+set scrolloff=8
+set sidescroll=1
+set sidescrolloff=8
 
-filetype plugin on
+filetype plugin indent on
 
 " Plugins loaded
 call plug#begin(stdpath('data') . '/plugged')
+Plug 'tpope/vim-repeat'
+Plug 'adwinwhite/vim-fanfingtastic'
 Plug 'vim-airline/vim-airline'
 Plug 'zxqfl/tabnine-vim'
 Plug 'easymotion/vim-easymotion'
@@ -51,6 +61,9 @@ map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
+map  <Leader>f <Plug>(easymotion-bd-f2)
+nmap <Leader>f <Plug>(easymotion-overwin-f2)
+map <Leader>t <Plug>(easymotion-bd-t2)
 let g:EasyMotion_startofline = 0
 let g:EasyMotion_smartcase = 1
 
