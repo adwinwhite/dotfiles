@@ -11,17 +11,23 @@ set nowrap
 set scrolloff=8
 set sidescroll=1
 set sidescrolloff=8
+set cmdwinheight=1
 
 filetype plugin indent on
+
 
 " Custom mappings
 inoremap jj <Esc>
 noremap <silent> <F6> :source ~/.vimrc<CR>
+nnoremap : q:i
+inoremap <C-s> <Esc>:w<CR>a
+nnoremap <C-s> :w<CR>
+
 
 " Plugins loaded
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+" Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 Plug 'romainl/vim-cool'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-repeat'
@@ -37,12 +43,12 @@ call plug#end()
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+" Use <Tab> to switch candidate
+inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 call deoplete#custom#var('tabnine', {
-\ 'line_limit': 500,
-\ 'max_num_results': 10,
+\ 'line_limit': 100,
+\ 'max_num_results': 5,
 \ })
-
-
 
 " Ale
 let g:airline#extensions#ale#enabled = 1
@@ -52,7 +58,7 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 0
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'c': ['clang_format'],
+\   'c': ['clang-format', 'clangtidy', 'astyle', 'uncrustify'],
 \   'javascript': ['eslint'],
 \}
 let g:ale_fix_on_save = 1
@@ -70,6 +76,7 @@ let g:fanfingtastic_ignorecase = 1
 
 " Airline
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 
 " Color scheme
