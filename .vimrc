@@ -14,6 +14,7 @@ set sidescrolloff=8
 set cmdwinheight=1
 
 filetype plugin indent on
+let g:tex_flavor = "latex"
 
 
 " Custom mappings
@@ -26,6 +27,7 @@ nnoremap <C-s> :w<CR>
 
 " Plugins loaded
 call plug#begin(stdpath('data') . '/plugged')
+Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 Plug 'romainl/vim-cool'
@@ -38,17 +40,29 @@ Plug 'preservim/nerdcommenter'
 Plug 'joshdick/onedark.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'dense-analysis/ale'
+Plug 'lervag/vimtex'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'adwinwhite/latex-img-paste.vim'
 call plug#end()
+
+
+" Nerdtree
+nnoremap <C-t> :NERDTreeToggle<CR>
 
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 " Use <Tab> to switch candidate
 inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-call deoplete#custom#var('tabnine', {
-\ 'line_limit': 100,
-\ 'max_num_results': 5,
-\ })
+" call deoplete#custom#var('tabnine', {
+" \ 'line_limit': 100,
+" \ 'max_num_results': 5,
+" \ })
+
+call deoplete#custom#var('omni', 'input_patterns', {
+      \ 'tex': g:vimtex#re#deoplete
+      \})
 
 " Ale
 let g:airline#extensions#ale#enabled = 1
@@ -129,5 +143,13 @@ let g:NERDTrimTrailingWhitespace = 1
 " Neovide
 let g:neovide_font_size=54.0
 
+" Ultisnips
+let g:UltiSnipsExpandTrigger="<Bar>"
+
+" Latex image paste
+autocmd FileType tex nnoremap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+" there are some defaults for image directory and image name, you can change them
+" let g:mdip_imgdir = 'img'
+" let g:mdip_imgname = 'image'
 
 " Custom functions
